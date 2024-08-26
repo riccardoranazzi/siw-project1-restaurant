@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestione Menù - Il Ristorante del Gusto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/admin/indexAdmin"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+            <h1><a href="/admin/indexAdmin">Il Ristorante del Gusto</a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/admin/indexAdmin">Homepage</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="manage-menu">
+        <h2>Gestione Menù</h2>
+        
+        <div class="product-container">
+            <div class="product-card" th:each="product : ${products}">
+                <h3 th:text="${product.name}">Nome Prodotto</h3>
+                <p th:text="${product.price} + ' €'">Prezzo</p>
+                <p th:text="${product.description}">Descrizione</p>
+                <form th:action="@{/admin/removeProduct/{id}(id=${product.id})}" method="post">
+                    <button type="submit" class="remove-button">Rimuovi</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="add-product-button">
+            <a href="/admin/formNewProduct" class="btn-add-product">Aggiungi un nuovo prodotto</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>
+
+
+ 

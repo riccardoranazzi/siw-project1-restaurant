@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -45,13 +46,14 @@ public class ProductController {
         return null; // Nessun utente autenticato
     }
  
+	 @Transactional
 	 @PostMapping("/product")
  	 public String createProduct(@RequestParam("name") String name, @RequestParam("description") String description, @RequestParam("price") float price, @RequestParam("image") MultipartFile imageFile) throws IOException { 
 	 productService.createProduct(name, price, description, imageFile);
-     return "redirect:/menuAdmin";
+     return "redirect:admin/manageMenu";
  }
  
- 	@GetMapping("/formNewProduct")
+ 	@GetMapping("/admin/formNewProduct")
  	public String formNewProduct(Model model) {
  		model.addAttribute("product", new Product());
  		return "admin/formNewProduct";
@@ -74,5 +76,18 @@ public class ProductController {
 		model.addAttribute("product", this.productService.findById(id));
 		return "admin/product";
 	}
+	
+	@GetMapping("/admin/manageMenu")
+    public String showManageMenuPage(Model model) {
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
+        return "admin/manageMenu";
+    }
+
+    @PostMapping("/admin/removeProduct/{id}")
+    public String removeProduct(@PathVariable("id") Long id) {
+        productService.deleteById(id);
+        return "redirect:/admin/manageMenu";
+    }
 
 }

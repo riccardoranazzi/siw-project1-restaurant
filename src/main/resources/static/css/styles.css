@@ -51,7 +51,7 @@ a {
 }
 
 .logo {
-    height: 50px; /* Modifica questa dimensione in base alle tue necessità */
+    height: 50px; 
     margin-right: 10px; /* Distanza tra logo e titolo */
 }
 
@@ -82,27 +82,161 @@ section {
     gap: 20px;
 }
 
-/* Flexbox for Products */
+#product-container {
+    padding: 20px;
+}
+
 .product-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    justify-items: center;
 }
 
 .product-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: white;
     border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-details h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product-details p {
+    font-size: 16px;
+    color: #666;
+}
+
+/*order.html */
+
+.order-section {
     padding: 20px;
-    width: calc(33.333% - 40px); /* 3 items per row with gap */
-    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-admin-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.order-admin-table th, .order-admin-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.order-admin-table th {
+    background-color: #007BFF;
+    color: white;
+    text-transform: uppercase;
+}
+
+.order-admin-table tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/*product.html*/
+
+#product-detail {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.product-detail-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
     text-align: center;
 }
 
-.product-card h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
+.product-detail-card h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.product-image {
+    margin-bottom: 20px;
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-detail-card p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product-detail-card p strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/*manageMenu.html*/
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.product-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 10px;
+    width: 30%;
+    text-align: center;
+}
+
+.product-card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.product-card p {
+    margin: 8px 0;
+}
+
+.remove-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.remove-button:hover {
+    background-color: #ff1a1a;
 }
 
 .title {
@@ -163,6 +297,66 @@ section {
 
 .add-product-card a:hover {
     color: #007BFF; /* Cambia colore al passaggio del mouse */
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px auto;
+    gap: 20px;
+    width: 90%;
+}
+
+.product-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    width: calc(33.333% - 40px);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.product-card p {
+    margin: 8px 0;
+}
+
+.remove-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.remove-button:hover {
+    background-color: #ff1a1a;
+}
+
+.add-product-button {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.btn-add-product {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn-add-product:hover {
+    background-color: #0056b3;
 }
 
 /* Stile per il contenitore che centra il riquadro */

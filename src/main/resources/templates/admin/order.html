@@ -2,28 +2,52 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Men&ugrave;</title>
+    <title>Dettagli Ordine - Il Ristorante del Gusto</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <header>
         <div class="logo-container">
-            <a href="/indexAdmin"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
-         	<h1><a href="/indexAdmin">Il Ristorante del Gusto</a></h1>
-		</div>
+            <a href="/admin/indexAdmin"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+            <h1><a href="/admin/indexAdmin">Il Ristorante del Gusto</a></h1>
+        </div>
         <nav>
             <ul>
-				<li><a href"/">Homepage</a></li>
+                <li><a href="/admin/indexAdmin">Homepage</a></li>
             </ul>
         </nav>
     </header>
+
     <section>
-            <li th:each="orderLine : ${orderLines}">
-                <span th:text="${orderLine.product.name} + ' ' + ${orderLine.quantity} + 'x' + ${orderLine.product.price} + &euro; + '=' + ${orderLine.getSubTotal()}">Prodotto</a>
-            </li>
-        </ul>
-   
+        <div class="order-details">
+            <h2>Dettagli dell'Ordine</h2>
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>Prodotto</th>
+                        <th>Quantità</th>
+                        <th>Prezzo Unitario</th>
+                        <th>Subtotale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="orderLine : ${orderLines}">
+                        <td th:text="${orderLine.product.name}">Nome Prodotto</td>
+                        <td th:text="${orderLine.quantity}">Quantità</td>
+                        <td th:text="${orderLine.product.price} + ' €'">Prezzo</td>
+                        <td th:text="${orderLine.getSubTotal()} + ' €'">Subtotale</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Totale dell'ordine -->
+            <div class="total-price">
+                <strong>Totale:</strong>
+                <span th:text="${total} + ' €'">0.00 €</span>
+            </div>
+        </div>
     </section>
+
     <footer>
         <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
     </footer>

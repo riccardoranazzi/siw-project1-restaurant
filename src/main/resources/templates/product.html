@@ -2,44 +2,38 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Prodotto</title>
+    <title>Dettagli Prodotto - Il Ristorante del Gusto</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-     <header>
+    <header>
         <div class="logo-container">
             <a href="/index"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
          	<h1><a href="/index">Il Ristorante del Gusto</a></h1>
 		</div>
-         <nav>
+        <nav>
             <ul>
-				<li><a href="/index">Homepage</a></li>
-				
-                <li><a href="/menu">Menù</a></li>
-                
-                 <li th:if="${username != null}" class="username">
-				 <a href="/profile" th:text="${username}">Username</a>
-                 </li>
-                 
-                <li th:if="${username == null}" class="login">
-                    <a href="/login">Login</a>
-                </li>
-                
-                <li th:if="${username == null}" class="register">
-					<a href="/register">Register</a>
-                </li>
-                
+                <li><a href="/index">Homepage</a></li>
+                <li th:if="${username != null}" class="username"><a href="/profile" th:text="${username}">Username</a></li>
+                <li th:if="${username != null}" class="username"><a href="/logout">Logout</a></li>
+                <li th:if="${username == null}" class="login"><a href="/login">Login</a></li>
+                <li th:if="${username == null}" class="register"><a href="/register">Register</a></li>
             </ul>
         </nav>
     </header>
-    <section id="hero">
-        <div th:text="${product.name} + ' ' + ${product.price} + &euro;"></div>
-         <div th:text="${product.description}"></div>
-         	<div>
-        		<img th:src="@{/images/{id}(id=${product.image.id})}" class="product-image"/ alt="Foto del prodotto">
-   			</div>
-        
+
+    <section id="product-detail">
+        <div class="product-detail-card">
+            <h2 th:text="${product.name}">Nome Prodotto</h2>
+            <div class="product-image">
+                <img th:src="@{'/images/' + ${product.image.id}}" alt="Immagine di ${product.name}">
+            </div>
+            <p><strong>Prezzo:</strong> <span th:text="${product.price} + ' €'">0.00 €</span></p>
+            <p><strong>Descrizione Ingredienti:</strong></p>
+            <p th:text="${product.description}">Descrizione ingredienti...</p>
+        </div>
     </section>
+
     <footer>
         <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
     </footer>

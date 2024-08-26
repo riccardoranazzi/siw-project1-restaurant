@@ -21,7 +21,7 @@ public class IndexController {
 	@Autowired ProductService productService;
 	
     
-    @GetMapping("/menuAdmin")
+    @GetMapping("/admin/menuAdmin")
 	public String showMenuAdmin(Model model) {
 		model.addAttribute("products", this.productService.getAllProducts());
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

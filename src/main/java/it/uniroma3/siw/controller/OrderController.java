@@ -68,7 +68,7 @@ public class OrderController {
 		model.addAttribute("order", this.orderRepository.findById(id));
 		model.addAttribute("orderLines", this.orderRepository.findById(id).get().getOrderLines());
 		model.addAttribute("product", this.productRepository.findAll());
-		return "order";
+		return "/admin/order";
 	}
 	
 	@GetMapping("/selectTime")
@@ -87,7 +87,7 @@ public class OrderController {
 		return "formNewOrder";
 	}
 
-	
+	@Transactional
 	@PostMapping("/selectTime")
     public String handleTimeSelection(@RequestParam("orario") Orario orario) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -105,6 +105,7 @@ public class OrderController {
         return "redirect:/formNewOrder/" + order.getId();
     }
 	
+	@Transactional
 	@GetMapping("/formNewOrder/{orderId}")
 	public String showFormNewOrder(@PathVariable("orderId") Long orderId, Model model) {
 	    Order ordine = orderService.findById(orderId);
@@ -114,6 +115,7 @@ public class OrderController {
 	}
 	
 
+	@Transactional
 	  @PostMapping("/addProductToOrder/{orderId}")
 	    public String addProductToOrder(@PathVariable("orderId") Long orderId, 
 	                                    @RequestParam("productId") Long productId, 
@@ -131,6 +133,7 @@ public class OrderController {
 	        return "redirect:/formNewOrder/" + orderId;
 	    }
 	  
+	  @Transactional
 	  @PostMapping("/decreaseOrRemoveProductFromOrder/{orderLineId}")
 		public String decreaseOrRemoveProductFromOrder(@PathVariable("orderLineId") Long orderLineId) {
 		    OrderLine orderLine = orderLineService.findById(orderLineId);
@@ -155,7 +158,7 @@ public class OrderController {
 	      if (order != null) {
 	    	  order.setFinalized(true);
 	          orderService.saveOrder(order);
-	          float total = order.getTotale();
+	          float total = order.getTotalPrice();
 	          model.addAttribute("total", total);
 	          return "redirect:/completeOrder/" + orderId; 
 	      }
@@ -173,6 +176,7 @@ public class OrderController {
 	      return "redirect:/index";
 	  }
 	
+	  @Transactional
 	  @PostMapping("/completeOrder/{orderId}")
 	  public String completeOrder(@PathVariable("orderId") Long orderId, @RequestParam("notes") String notes) {
 	      Order order = orderService.findById(orderId);
@@ -187,7 +191,7 @@ public class OrderController {
 	  @GetMapping("/orderConfirmed/{orderId}")
 	  public String orderConfirmed(@PathVariable("orderId") Long orderId, Model model) {
 		  Order order = orderService.findById(orderId);
-		  float total = order.getTotale();
+		  float total = order.getTotalPrice();
 		  model.addAttribute("total", total);
 		  model.addAttribute("order", order);
 		  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -204,13 +208,13 @@ public class OrderController {
 	  @GetMapping("/completeOrder/{orderId}")
 	  public String completeOrder(@PathVariable("orderId") Long orderId, Model model) {
 	      Order order = orderService.findById(orderId);
-	      float total = order.getTotale();
+	      float total = order.getTotalPrice();
 	      model.addAttribute("order", order);
 	      model.addAttribute("total", total);
 	      return "completeOrder"; 
 	  }
 	  
-	  @GetMapping("/orders")
+	  @GetMapping("/admin/orders")
 	  public String ShowOrders(Model model) {
 		  model.addAttribute("orders", orderService.findAll());
 		  return "/admin/orders";
@@ -220,6 +224,9 @@ public class OrderController {
 	  public String showAdminOrder(Model model, @PathVariable("orderId")Long orderId) {
 		  Order order = orderService.findById(orderId);
 		  model.addAttribute("orderLines", order.getOrderLines());
+		  float total = order.getTotalPrice();
+		  model.addAttribute("total", total);
+		  model.addAttribute("order", order);
 		  return "/admin/order";
 	  }
 	  

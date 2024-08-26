@@ -8,17 +8,17 @@
 <body>
     <header>
         <div class="logo-container">
-            <a href="/indexAdmin"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
-         	<h1><a href="/indexAdmin">Il Ristorante del Gusto</a></h1>
-		</div>
+            <a href="/admin/indexAdmin"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+            <h1><a href="/admin/indexAdmin">Il Ristorante del Gusto</a></h1>
+        </div>
         <nav>
             <ul>
-				<li><a href="/indexAdmin">Homepage</a></li>
+                <li><a href="/admin/indexAdmin">Homepage</a></li>
             </ul>
         </nav>
     </header>
     
-    <section>
+    <section class="order-section">
         <div th:if="${orders == null || orders.isEmpty()}">Non ci sono ordini nel sistema</div>
         <table th:if="${orders != null && !orders.isEmpty()}" class="order-admin-table">
             <thead>
@@ -30,11 +30,11 @@
             </thead>
             <tbody>
                 <tr th:each="order : ${orders}">
-                   <a th:href="@{'/admin/order/' + ${order.id}}" class="order-link">
-                        <td th:text="${order.orario}">Orario</td>
-                        <td th:text="${order.user.surname}">Cognome</td>
-                        <td th:text="${order.user.address.name}">Indirizzo</td>
-                    </a>
+					<a th:href="@{'/order/' + ${order.id}}">
+                    <td th:text="${order.orario}">Orario</td>
+                    <td th:text="${order.user.surname}">Cognome</td>
+                    <td th:text="${order.user.address.name}">Indirizzo</td>
+					</a>
                 </tr>
             </tbody>
         </table>

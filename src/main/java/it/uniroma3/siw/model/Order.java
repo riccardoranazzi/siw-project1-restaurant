@@ -81,15 +81,6 @@ public class Order {
 		this.orderLines = orderLines;
 	}
 
-	
-	public float getTotale() {
-		float totale = 0;
-			for(OrderLine orderLine: this.orderLines) {
-				totale += orderLine.getSubTotal();
-			}
-		return totale;
-	}
-
 	public Orario getOrario() {
 		return orario;
 	}
