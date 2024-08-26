@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Ordini - Il Ristorante del Gusto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/indexAdmin"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+         	<h1><a href="/indexAdmin">Il Ristorante del Gusto</a></h1>
+		</div>
+        <nav>
+            <ul>
+				<li><a href="/indexAdmin">Homepage</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section>
+        <div th:if="${orders == null || orders.isEmpty()}">Non ci sono ordini nel sistema</div>
+        <table th:if="${orders != null && !orders.isEmpty()}" class="order-admin-table">
+            <thead>
+                <tr>
+                    <th>Orario</th>
+                    <th>Cognome</th>
+                    <th>Indirizzo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order : ${orders}">
+                   <a th:href="@{'/admin/order/' + ${order.id}}" class="order-link">
+                        <td th:text="${order.orario}">Orario</td>
+                        <td th:text="${order.user.surname}">Cognome</td>
+                        <td th:text="${order.user.address.name}">Indirizzo</td>
+                    </a>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

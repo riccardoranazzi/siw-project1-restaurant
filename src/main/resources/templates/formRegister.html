@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrazione - Il Ristorante del Gusto</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/index"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+            <h1><a href="/index">Il Ristorante del Gusto</a></h1>
+        </div>
+    </header>
+
+    <div class="form-container">
+        <div class="form-box">
+            <h2>Registrazione</h2>
+            <form th:action="@{/registerUser}" method="post" th:object="${userRegistrationDto}">
+                <div class="form-group">
+                    <label for="name">Nome:</label>
+                    <input required type="text" id="name" th:field="*{user.name}">
+                    <div th:if="${#fields.hasErrors('user.name')}" th:errors="*{user.name}"></div>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Cognome:</label>
+                    <input required type="text" id="surname" th:field="*{user.surname}">
+                    <div th:if="${#fields.hasErrors('user.surname')}" th:errors="*{user.surname}"></div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input required type="text" id="username" th:field="*{credentials.username}">
+                    <div th:if="${#fields.hasErrors('credentials.username')}" th:errors="*{credentials.username}"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input required type="password" id="password" th:field="*{credentials.password}">
+                    <div th:if="${#fields.hasErrors('credentials.password')}" th:errors="*{credentials.password}"></div>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="cellulare">Cellulare:</label>
+                    <input required type="text" id="cellulare" th:field="*{user.cellulare}">
+                    <div th:if="${#fields.hasErrors('user.cellulare')}" th:errors="*{user.cellulare}"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="addressName">Indirizzo:</label>
+                    <input required type="text" id="addressName" th:field="*{address.name}">
+                    <div th:if="${#fields.hasErrors('address.name')}" th:errors="*{address.name}"></div>
+                </div>
+                <div class="form-group">
+                    <label for="zipcode">Codice Postale:</label>
+                    <input required type="text" id="zipcode" th:field="*{address.zipcode}">
+                    <div th:if="${#fields.hasErrors('address.zipcode')}" th:errors="*{address.zipcode}"></div>
+                </div>
+                <button type="submit">Registrati</button>
+            </form>
+            
+            <div th:if="${errorMessage != null}"> 
+                <p th:text="${errorMessage}" style="color: red;"></p>
+           	</div>
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

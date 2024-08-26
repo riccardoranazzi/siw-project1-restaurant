@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Il Ristorante del Gusto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+		<div class="logo-container">
+            <a href="/index"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+         	<h1><a href="/index">Il Ristorante del Gusto</a></h1>
+		</div>
+        <nav>
+            <ul>
+                <li><a href="/menu">Menù</a></li>
+                
+                 <li th:if="${username != null}" class="username">
+				 <a href="/profile" th:text="${username}">Username</a>
+                 </li>
+                 
+                 <li th:if="${username != null}" class="username">
+				 <a href="/logout">Logout</a>
+                 </li>
+                 
+                <li th:if="${username == null}" class="login">
+                    <a href="/login">Login</a>
+                </li>
+                
+                <li th:if="${username == null}" class="register">
+					<a href="/register">Register</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </header>
+    
+    <section>
+		<div>
+        <h2 class="title">Benvenuto nel nostro Ristorante!</h2>
+        <h3 class="subtitle">Scopri i nostri piatti deliziosi e l'atmosfera accogliente.</h3>
+        </div>
+        <div class="flex-container">
+            <div class="flex-box">
+                <h3>Vedi il Menù</h3>
+                <p>Esplora i nostri piatti e scegli il tuo preferito!</p>
+                <a href="/menu" class="button">Vai al Menù</a>
+            </div>
+            <div class="flex-box">
+                <h3>Scopri il Ristorante</h3>
+                <p>Scopri di più sulla nostra storia e i nostri valori.</p>
+                <a href="/about" class="button">Scopri di più</a>
+            </div>
+            <div class="flex-box">
+                <h3>Effettua un Ordine</h3>
+                <p>Ordina i tuoi piatti preferiti comodamente da casa.</p>
+                <a href="/selectTime" class="button">Fai un Ordine</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

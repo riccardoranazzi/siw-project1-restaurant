@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Conferma Ordine - Il Ristorante del Gusto</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/index"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+            <h1><a th:href="@{/index}">Il Ristorante del Gusto</a></h1>
+        </div>   
+        <nav>
+            <ul>
+                <li><a href="/index">Homepage</a></li>
+                <li class="username">
+                    <a href="/profile" th:text="${username}">Username</a>
+                </li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="confirm-order" class="current-order">
+        <h2>Conferma il tuo Ordine</h2>
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Prodotto</th>
+                    <th>Quantità</th>
+                    <th>Prezzo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="orderLine : ${order.orderLines}">
+                    <td th:text="${orderLine.product.name}">Nome Prodotto</td>
+                    <td th:text="${orderLine.quantity}">Quantità</td>
+                    <td th:text="${orderLine.product.price} + ' €'">Prezzo</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Totale dell'ordine -->
+        <div id="total-price">
+            <strong>Totale: </strong>
+            <span th:text="${total} + ' €'">0.00 €</span>
+        <div>
+    		<h4 th:text="'Conferma che vuole ricevere l\'ordine all\'indirizzo: ' + ${address} + ' con cognome sul citofono: ' + ${surname} + '?'"></h>
+		</div>
+		<div>
+    		<h4>Altrimenti inserisca nelle note l&#39;indirizzo a cui vuole ricevere l&#39;ordine e il cognome sul citofono, Grazie</h4>
+		</div>
+
+
+        <!-- Form per aggiungere note all'ordine -->
+        <form th:action="@{/completeOrder/{orderId}(orderId=${order.id})}" method="post" class="order-notes-form">
+			<div>
+            <label for="notes">Aggiungi Note all'Ordine:</label>
+			</div>
+			<div>
+            <textarea id="notes" name="notes" rows="4" placeholder="Note speciali per l'ordine..."></textarea>
+            </div>
+            <div>
+            <button type="submit" class="confirm-button">Completa Ordine</button>
+            </div>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

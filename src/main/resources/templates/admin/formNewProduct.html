@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Product</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+           <a href="/index"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+            <h1><a th:href="@{/indexAdmin}">Il Ristorante del Gusto</a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a th:href="@{/menuAdmin}">Menu</a></li>
+                <li class="index"><a th:href="@{/}">Homepage</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="form-container">
+        <div class="form-box">
+            <h2>Aggiungi nuovo prodotto</h2>
+            <form th:action="@{/product}" method="POST" th:object="${product}" enctype="multipart/form-data">
+                <div th:if="${#fields.hasGlobalErrors()}">
+                    <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Nome:</label>
+                    <input required type="text" id="name" th:field="*{name}">
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Prezzo:</label>
+                    <input required type="number" id="price" th:field="*{price}">
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Descrizione Ingredienti:</label>
+                    <input type="text" id="description" th:field="*{description}">
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                </div>
+                
+                 <div class="form-group">
+       				<label for="image">Immagine del Prodotto
+						   :</label>
+        			<input type="file" id="image" name="image" required />
+    			</div>
+
+                <button type="submit">Conferma</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

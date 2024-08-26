@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuovo Ordine - Il Ristorante del Gusto</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/index"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+            <h1><a th:href="@{/index}">Il Ristorante del Gusto</a></h1>
+        </div>   
+         <nav>
+            <ul>
+                <li><a href="/index">Homepage</a></li>
+                <li class="username">
+                    <a href="/profile" th:text="${username}">Username</a>
+                </li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="order">
+        <h2>Aggiungi Prodotti al tuo Ordine</h2>
+        <div class="product-container">
+            <div class="product-card" th:each="product : ${products}">
+                <h3> <a th:href="@{'/product/' + ${product.id}}" th:text="${product.name}">Prodotto</a></h3>
+                <p th:text="${product.price} + ' €'">Prezzo</p>
+                <form th:action="@{/addProductToOrder/{orderId}(orderId=${order.id})}" method="post">
+                    <label for="quantity">Quantità:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                    <input type="hidden" name="productId" th:value="${product.id}">
+                    <button type="submit">Aggiungi</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="current-order" class="current-order">
+        <h3>Il tuo Ordine</h3>
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Prodotto</th>
+                    <th>Quantità</th>
+                    <th>Prezzo</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="orderLine : ${order.orderLines}">
+                    <td th:text="${orderLine.product.name}">Nome Prodotto</td>
+                    <td th:text="${orderLine.quantity}">Quantità</td>
+                    <td th:text="${orderLine.product.price} + ' €'">Prezzo</td>
+                    <td>
+                        <form th:action="@{/decreaseOrRemoveProductFromOrder/{orderLineId}(orderLineId=${orderLine.id})}" method="post">
+                            <button type="submit">-</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Pulsanti di conferma e annullamento -->
+        <div class="order-actions">
+            <form th:action="@{/confirmOrder/{orderId}(orderId=${order.id})}" method="post">
+                <button type="submit" class="confirm-button">Conferma Ordine</button>
+            </form>
+        </div>
+        
+        <div th:if="${errorMessage != null}"> 
+                <p th:text="${errorMessage}" style="color: red;"></p>
+           	</div>
+        
+        <div class="order-actions">
+            <form th:action="@{/cancelOrder/{orderId}(orderId=${order.id})}" method="post">
+                <button type="submit" class="cancel-button">Annulla Ordine</button>
+            </form>            
+        </div>
+        
+        
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

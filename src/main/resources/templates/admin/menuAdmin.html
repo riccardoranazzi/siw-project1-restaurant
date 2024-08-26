@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Men&ugrave;</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/indexAdmin"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+         	<h1><a href="/indexAdmin">Il Ristorante del Gusto</a></h1>
+		</div>
+        <nav>
+            <ul>
+				<li><a href"/indexAdmin">Homepage</a></li>
+				<li><a href"/logout">Logout</a></li>
+				<li><a href"/profile">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="hero">
+    	<div th:if="${products == null || products.isEmpty()}">Non ci sono prodotti nel sistema</div>
+    	<div class="product-container" th:if="${products != null && !products.isEmpty()}">
+        	<div class="product-card" th:each="product : ${products}">
+        		<a th:href="@{'/product/' + ${product.id}}">
+                <h2 th:text="${product.name}">Nome Prodotto</h2>
+            	<p th:text="${product.price} + ' €'">Prezzo</p>
+            	</a>
+       		</div>
+    	</div>
+	</section>
+
+        <div class="add-product-container">
+        	<div class="add-product-card">
+            	<h3><a th:href="@{'/formNewProduct'}">Aggiungi un nuovo prodotto</a></h3>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

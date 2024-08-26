@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Il Ristorante del Gusto</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/index"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+            <h1><a href="/index">Il Ristorante del Gusto</a></h1>
+        </div>
+    </header>
+    
+    <div class="form-container">
+        <div class="form-box">
+            <h2>Login</h2>
+            <form th:action="@{/login}" method="post" th:object="${credentials}">
+                <div class="form-group">
+				
+				<div>
+                    <label for="username">Username:</label>
+                    <input required type="text" id="username" th:field="*{username}">
+                </div> 
+                                 
+             	<div>
+                    <label for="password">Password:</label>
+                    <input required type="password" id="password" th:field="*{password}">
+              	</div>
+              	
+                <button type="submit">Accedi</button>             
+           		
+                </div>                           		
+            </form>
+            
+            <div th:if="${errorMessage != null}"> 
+                <p th:text="${errorMessage}" style="color: red;"></p>
+           	</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>
+

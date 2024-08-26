@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Prodotto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+     <header>
+        <div class="logo-container">
+            <a href="/index"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+         	<h1><a href="/index">Il Ristorante del Gusto</a></h1>
+		</div>
+         <nav>
+            <ul>
+				<li><a href="/index">Homepage</a></li>
+				
+                <li><a href="/menu">Menù</a></li>
+                
+                 <li th:if="${username != null}" class="username">
+				 <a href="/profile" th:text="${username}">Username</a>
+                 </li>
+                 
+                <li th:if="${username == null}" class="login">
+                    <a href="/login">Login</a>
+                </li>
+                
+                <li th:if="${username == null}" class="register">
+					<a href="/register">Register</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </header>
+    <section id="hero">
+        <div th:text="${product.name} + ' ' + ${product.price} + &euro;"></div>
+         <div th:text="${product.description}"></div>
+         	<div>
+        		<img th:src="@{/images/{id}(id=${product.image.id})}" class="product-image"/ alt="Foto del prodotto">
+   			</div>
+        
+    </section>
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Men&ugrave;</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/indexAdmin"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+         	<h1><a href="/indexAdmin">Il Ristorante del Gusto</a></h1>
+		</div>
+        <nav>
+            <ul>
+				<li><a href"/">Homepage</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+            <li th:each="orderLine : ${orderLines}">
+                <span th:text="${orderLine.product.name} + ' ' + ${orderLine.quantity} + 'x' + ${orderLine.product.price} + &euro; + '=' + ${orderLine.getSubTotal()}">Prodotto</a>
+            </li>
+        </ul>
+   
+    </section>
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Informazioni - Il Ristorante del Gusto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/index"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+            <h1><a href="/index">Il Ristorante del Gusto</a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/index">Homepage</a></li>
+                <li><a href="/menu">Menù</a></li>                       
+                <li th:if="${username != null}" class="username">
+                    <a href="/profile" th:text="${username}">Username</a>
+                </li>               
+                <li th:if="${username != null}" class="username">
+                    <a href="/logout">Logout</a>
+                </li>
+                <li th:if="${username == null}" class="login">
+                    <a href="/login">Login</a>
+                </li>
+                <li th:if="${username == null}" class="register">
+                    <a href="/register">Register</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="info">
+        <div class="info-container">
+            <!-- Box della Mappa -->
+            <div class="info-box map-box">
+                <a href="https://www.google.com/maps/place/Ingegneria+Informatica+-+Università+Roma+Tre/@41.855438,12.4670825,16z/data=!3m1!4b1!4m6!3m5!1s0x13258a922b3edaeb:0xd7c1990833e3ea29!8m2!3d41.855434!4d12.4696574!16s%2Fg%2F11csqzkbn1?hl=it&entry=ttu" target="_blank">
+                    <img src="/images/102" alt="Mappa della posizione del ristorante">
+                </a>
+            </div>
+            <!-- Box della Storia -->
+            <div class="info-box story-box">
+                <h2>La Nostra Storia</h2>
+                <p>Il Ristorante del Gusto è nato nel cuore della città oltre 50 anni fa. Da allora, abbiamo sempre
+                    mantenuto una passione per la cucina autentica e di qualità, servendo piatti tradizionali con un tocco
+                    moderno. La nostra missione è offrire un'esperienza culinaria indimenticabile, combinando sapori
+                    eccezionali con un servizio eccellente. Vi invitiamo a scoprire la nostra storia e a far parte della
+                    nostra famiglia culinaria.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

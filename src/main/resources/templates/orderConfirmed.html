@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ordine Confermato - Il Ristorante del Gusto</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/index"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
+            <h1><a th:href="@{/index}">Il Ristorante del Gusto</a></h1>
+        </div>   
+        <nav>
+            <ul>
+                <li><a href="/index">Homepage</a></li>
+                <li class="username">
+                    <a href="/profile" th:text="${username}">Username</a>
+                </li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="order-confirmation">
+        <h2>Il tuo ordine è stato confermato!</h2>
+        <p th:text="'Totale: ' + ${total} + ' €'">Totale: </p>
+        <p>Grazie per aver ordinato con noi. Riceverai una conferma via email a breve.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Il Ristorante del Gusto. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>
