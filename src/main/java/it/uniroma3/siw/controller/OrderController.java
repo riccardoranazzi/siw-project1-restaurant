@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.siw.model.Address;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Orario;
 import it.uniroma3.siw.model.Order;
@@ -211,6 +212,12 @@ public class OrderController {
 	      float total = order.getTotalPrice();
 	      model.addAttribute("order", order);
 	      model.addAttribute("total", total);
+	      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	      UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+	      User user = userService.findByUsername(userDetails.getUsername());
+	      Address address = user.getAddress();
+	      model.addAttribute("address", address);
+	      model.addAttribute("user", user);
 	      return "completeOrder"; 
 	  }
 	  

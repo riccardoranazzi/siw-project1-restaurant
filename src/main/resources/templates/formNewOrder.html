@@ -26,7 +26,7 @@
         <h2>Aggiungi Prodotti al tuo Ordine</h2>
         <div class="product-container">
             <div class="product-card" th:each="product : ${products}">
-                <h3> <a th:href="@{'/product/' + ${product.id}}" th:text="${product.name}">Prodotto</a></h3>
+                <h3><a th:href="@{'/product/' + ${product.id}}" th:text="${product.name}" class="product-title">Prodotto</a></h3>
                 <p th:text="${product.price} + ' €'">Prezzo</p>
                 <form th:action="@{/addProductToOrder/{orderId}(orderId=${order.id})}" method="post">
                     <label for="quantity">Quantità:</label>

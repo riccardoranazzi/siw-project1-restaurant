@@ -9,7 +9,7 @@
     <header>
         <div class="logo-container">
             <a href="/index"><img src="/images/2" alt="Logo Il Ristorante del Gusto" class="logo"></a>
-            <h1><a th:href="@{/index}">Il Ristorante del Gusto</a></h1>
+            <h1><a href="/index">Il Ristorante del Gusto</a></h1>
         </div>   
         <nav>
             <ul>
@@ -46,14 +46,14 @@
             <strong>Totale: </strong>
             <span th:text="${total} + ' €'">0.00 €</span>
         <div>
-    		<h4 th:text="'Conferma che vuole ricevere l\'ordine all\'indirizzo: ' + ${address} + ' con cognome sul citofono: ' + ${surname} + '?'"></h>
+    		<h4 th:text="'Conferma che vuole ricevere l\'ordine all\'indirizzo: ' + ${address.name} + ' con cognome sul citofono: ' + ${user.surname} + '?'"></h>
 		</div>
 		<div>
     		<h4>Altrimenti inserisca nelle note l&#39;indirizzo a cui vuole ricevere l&#39;ordine e il cognome sul citofono, Grazie</h4>
 		</div>
 
 
-        <!-- Form per aggiungere note all'ordine -->
+      
         <form th:action="@{/completeOrder/{orderId}(orderId=${order.id})}" method="post" class="order-notes-form">
 			<div>
             <label for="notes">Aggiungi Note all'Ordine:</label>
