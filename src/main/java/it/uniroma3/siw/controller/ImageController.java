@@ -21,6 +21,8 @@ public class ImageController {
  @Autowired
  private ImageService imageService;
  
+ 
+ //metodo controller per immagini
  @Transactional
  @GetMapping("/{id}")
  public ResponseEntity<byte[]> getImage(@PathVariable Long id) {

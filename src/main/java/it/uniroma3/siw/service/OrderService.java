@@ -99,5 +99,9 @@ public class OrderService {
 		public Iterable<Order> findAll() {
 			return this.orderRepository.findAll();
 		}
+
+		public Iterable<Order> getAllFinalizedOrders() {
+		return orderRepository.findByFinalizedTrue();
+		}
 	    
 }

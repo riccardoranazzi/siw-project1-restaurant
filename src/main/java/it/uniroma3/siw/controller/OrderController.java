@@ -117,20 +117,19 @@ public class OrderController {
 	
 
 	@Transactional
-	  @PostMapping("/addProductToOrder/{orderId}")
+	@PostMapping("/addProductToOrder/{orderId}")
 	    public String addProductToOrder(@PathVariable("orderId") Long orderId, 
 	                                    @RequestParam("productId") Long productId, 
 	                                    @RequestParam("quantity") int quantity) {
-	        // Trova l'ordine e il prodotto dal database
+	       
 	        Order order = orderService.findById(orderId);
 	        Product product = productService.findById(productId);
 
 	        if (order != null && product != null) {
-	            // Usa il metodo del servizio per aggiungere il prodotto all'ordine
+	            
 	            orderService.addProductToOrder(order, product, quantity);
 	        }
 
-	        // Redirige alla pagina dell'ordine con l'ID dell'ordine corrente
 	        return "redirect:/formNewOrder/" + orderId;
 	    }
 	  
@@ -223,10 +222,11 @@ public class OrderController {
 	  
 	  @GetMapping("/admin/orders")
 	  public String ShowOrders(Model model) {
-		  model.addAttribute("orders", orderService.findAll());
+		  model.addAttribute("orders", orderService.getAllFinalizedOrders());
 		  return "/admin/orders";
 	  }
 	  
+	  @Transactional
 	  @GetMapping("/admin/order/{orderId}")
 	  public String showAdminOrder(Model model, @PathVariable("orderId")Long orderId) {
 		  Order order = orderService.findById(orderId);

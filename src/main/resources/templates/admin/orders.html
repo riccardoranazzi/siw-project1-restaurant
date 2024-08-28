@@ -26,15 +26,15 @@
                     <th>Orario</th>
                     <th>Cognome</th>
                     <th>Indirizzo</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="order : ${orders}">
-					<a th:href="@{'/order/' + ${order.id}}">
-                    <td th:text="${order.orario}">Orario</td>
-                    <td th:text="${order.user.surname}">Cognome</td>
-                    <td th:text="${order.user.address.name}">Indirizzo</td>
-					</a>
+                    <td th:text="${order.orario}" class="order-admin"></td>
+                    <td th:text="${order.user.surname}"  class="order-admin"></td>
+                    <td th:text="${order.user.address.name}"  class="order-admin"></td>
+					<td><a th:href="@{/admin/order/{orderId}(orderId=${order.id})}"class="order-admin">Visualizza Ordine</a></td>
                 </tr>
             </tbody>
         </table>
@@ -45,3 +45,6 @@
     </footer>
 </body>
 </html>
+
+
+

@@ -53,7 +53,7 @@ public class AuthenticationController {
             Credentials credentials = credentialsService.findByUsername(userDetails.getUsername());
             return credentials.getUsername();
         }
-        return null; // Nessun utente autenticato
+        return null; 
     }
 	
 	
@@ -134,14 +134,12 @@ public class AuthenticationController {
         	model.addAttribute("errorMessage", "Errore nell'aggiornamento del profile, per favore riprova");
             return "profile";
         }
-
-        // Recupera l'utente attuale dal database per mantenere gli altri dati inalterati
+        
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Credentials credentials = credentialsService.findByUsername(userDetails.getUsername());
         User currentUser = credentials.getUser();
 
-        // Aggiorna solo i campi modificabili
         currentUser.setName(user.getName());
         currentUser.setSurname(user.getSurname());
         currentUser.setCellulare(user.getCellulare());

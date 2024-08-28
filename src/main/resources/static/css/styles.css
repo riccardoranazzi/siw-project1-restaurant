@@ -15,11 +15,11 @@ header {
 }
 
 header h1 {
-    float: none; /* Remove float */
+    float: none; 
 }
 
 nav {
-    float: none; /* Remove float */
+    float: none; 
 }
 
 nav ul {
@@ -35,6 +35,13 @@ nav ul li.login {
     float: right;
     margin-right: 50px;
 }
+
+.index-title {
+	color:white;
+	text-align: center;
+	font-weight: bold;
+}
+
 
 .button-35 {
 	padding: 0.5rem 1rem; /* increase the padding */
@@ -246,14 +253,14 @@ section {
 }
 
 .title {
-	font-size:30px;
+	font-size:45px;
 	font-weight: 600;
 	margin-bottom: 30px;
 	align-items: center;
 }
 
 .subtitle {
-	font-size: 20px;
+	font-size: 30px;
 	font-weight: 300;
 	align-items: center;
 	margin-top: 0;
@@ -499,6 +506,7 @@ button[type="submit"]:hover {
 }
 
 .order-notes-form {
+	margin-top: 20px;
     display: flex;
     flex-direction: column;
 }
@@ -547,6 +555,7 @@ button[type="submit"]:hover {
     background-color: #007bff;
     color: white;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .order-admin-table td {
@@ -579,21 +588,21 @@ button[type="submit"]:hover {
 }
 
 .flex-box {
-    background-color: rgba(255, 255, 255, 0.8); /* Bianco semi-trasparente */
+    background-color: rgba(255, 255, 255, 0.8); 
     padding: 20px;
     border-radius: 10px;
     width: 30%;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Aggiunta di ombreggiatura per migliorare la profondità */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .flex-box h3 {
-    color: #333; /* Colore del testo per un migliore contrasto */
+    color: #333; 
     font-weight: bold;
 }
 
 .flex-box p {
-    color: #444; /* Colore del testo per un migliore contrasto */
+    color: #444; 
     font-size: 16px;
 }
 
@@ -688,5 +697,44 @@ body.home-background::before {
 body.home-background > * {
     position: relative;
     z-index: 2;
+}
+
+/*admin/orders*/
+
+.order-admin {
+	color:#333;
+	text-decoration: none;
+}
+
+/*admin-order*/
+
+.order-details-admin {
+    text-align: center; 
+    margin-bottom: 30px; 
+}
+
+.order-table-admin {
+    margin: 0 auto; 
+    border-collapse: collapse;
+    width: 80%;
+    text-align: center; 
+}
+
+.order-table-admin th, .order-table-admin td {
+    border: 1px solid #ddd;
+    padding: 20px 30px;
+    text-align: center;
+}
+
+.order-table-admin th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.total-price-admin {
+    margin-top: 20px;
+    font-size: 18px;
+    margin-top: 20px;
+    text-align: center;
 }
 
