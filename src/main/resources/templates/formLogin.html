@@ -29,7 +29,11 @@
                     <input required type="password" id="password" th:field="*{password}">
               	</div>
               	
-                <button type="submit">Accedi</button>             
+                <button type="submit">Accedi</button> 
+                
+                <div>
+					<a href="/register">O se non hai ancora un account Registrati qui</a>"
+				</div>            
            		
                 </div>                           		
             </form>
@@ -37,6 +41,11 @@
             <div th:if="${errorMessage != null}"> 
                 <p th:text="${errorMessage}" style="color: red;"></p>
            	</div>
+           	
+           	 <div class="register-prompt">
+                <p>Non hai un account? <a href="/register">Registrati qui</a></p>
+            </div>
+           	
         </div>
     </div>
 

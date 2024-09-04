@@ -56,7 +56,7 @@
                     <td th:text="${orderLine.product.price} + ' €'">Prezzo</td>
                     <td>
                         <form th:action="@{/decreaseOrRemoveProductFromOrder/{orderLineId}(orderLineId=${orderLine.id})}" method="post">
-                            <button type="submit">-</button>
+                            <button type="submit">Rimuovi</button>
                         </form>
                     </td>
                 </tr>
