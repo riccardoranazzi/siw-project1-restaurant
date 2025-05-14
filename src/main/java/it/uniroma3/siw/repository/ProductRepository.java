@@ -6,4 +6,6 @@ import it.uniroma3.siw.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
+	Iterable<Product> findByDescriptionConatining(String ingredient);
+	
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import it.uniroma3.siw.model.Product;
 
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.model.Product;
@@ -20,6 +21,7 @@ public class ProductService {
  private ProductRepository productRepository;
  @Autowired
  private ImageRepository imageRepository;
+ 
  
  @Transactional
  public Product createProduct(String name, float price, String description, MultipartFile imageFile) throws IOException {
@@ -48,5 +50,14 @@ public class ProductService {
 	productRepository.deleteById(id);
 	
  }
+
+public Iterable<Product> cercaProdottiConIngrediente(String ingrediente) {
+	
+	Iterable<Product> products = productRepository.findByDescriptionConatining(ingrediente);
+	
+	return products;
+		
+	
+	}
 
 }

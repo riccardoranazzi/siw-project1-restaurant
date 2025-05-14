@@ -89,5 +89,14 @@ public class ProductController {
         productService.deleteById(id);
         return "redirect:/admin/manageMenu";
     }
+    
+    @GetMapping("/productIngrediente")
+    public String productIngrediente(Model model, @ModelAttribute("ingrediente")String ingrediente) {
+    	
+    	productService.cercaProdottiConIngrediente(ingrediente);
+    	
+    	
+    	return "productIngrediente";
+    }
 
 }
